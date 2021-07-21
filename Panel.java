@@ -196,7 +196,17 @@ public class Panel extends Canvas
 
     @Override
     public void keyPressed(KeyEvent key) {
-        this.k = key;
+        if(key.getKeyCode() == KeyEvent.VK_SPACE){
+            if(!Apath.running){
+                Apath.running = true;
+            }
+            else{
+                Apath.running = false;
+            }
+        }
+        else{
+            this.k = key;
+        }
     }
 
     @Override
