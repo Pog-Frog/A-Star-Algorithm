@@ -70,76 +70,45 @@ public class Block {
     public ArrayList<Block> get_neighbours() {
         if (this.neighbours.size() < 1) {
             int mrk = 0;
-            if (!(x - Panel.SIZE < 0)) {
-                Block w = new Block(x - Panel.SIZE, y);
-                Block nw = new Block(x - Panel.SIZE, y - Panel.SIZE);
-                for (int i = 0; i < Apath.blocks.size(); i++) {
-                    if (mrk == 2) {
-                        break;
-                    }
-                    if (Apath.blocks.get(i).isEqual(w)) {
-                        neighbours.add(Apath.blocks.get(i));
-                        mrk++;
-                    }
-                    if (Apath.blocks.get(i).isEqual(nw)) {
-                        neighbours.add(Apath.blocks.get(i));
-                        mrk++;
-                    }
-                }
+            int col = (int) x / size, row = (int) y / size;
+            //w
+            if(!(col - 1 < 0)){
+                neighbours.add(Apath.blocks[row][col - 1]);
             }
-            mrk = 0;
-            if (!(y + Panel.SIZE < 0)) {
-                Block s = new Block(x, y + Panel.SIZE);
-                Block se = new Block(x + Panel.SIZE, y + Panel.SIZE);
-                Block sw = new Block(x - Panel.SIZE, y + Panel.SIZE);
-                for (int i = 0; i < Apath.blocks.size(); i++){
-                    if(mrk == 3){
-                        break;
-                    }
-                    if (Apath.blocks.get(i).isEqual(s)) {
-                        neighbours.add(Apath.blocks.get(i));
-                        mrk++;
-                    }
-                    if (Apath.blocks.get(i).isEqual(se)) {
-                        neighbours.add(Apath.blocks.get(i));
-                        mrk++;
-                    }
-                    if (Apath.blocks.get(i).isEqual(sw)) {
-                        neighbours.add(Apath.blocks.get(i));
-                        mrk++;
-                    }
+            // nw
+            if (!(row - 1 < 0 || col - 1 < 0)) {
+                neighbours.add(Apath.blocks[row - 1][col - 1]);
+            }
+            // n
+            if (!(row - 1 < 0 && col >= 0)) {
+                neighbours.add(Apath.blocks[row - 1][col]);
+            }
+            // ne
+            if (!(row - 1 < 0 || col + 1 > Apath.max_col)) {
+                neighbours.add(Apath.blocks[row - 1][col + 1]);
+            }
+            // e
+            if (!(col + 1 > Apath.max_col)) {
+                neighbours.add(Apath.blocks[row][col + 1]);
+            }
+            // se
+            if (!(row + 1 > Apath.max_row || col + 1 > Apath.max_col)) {
+                neighbours.add(Apath.blocks[row + 1][col + 1]);
+            }
+            // s
+            if (!(row + 1 > Apath.max_row)) {
+                neighbours.add(Apath.blocks[row + 1][col]);
+            }
+            // sw
+            if (!(col - 1 < 0 || row + 1 > Apath.max_row )) {
+                neighbours.add(Apath.blocks[row + 1][col - 1]);
+            }
 
-                }
-            }
-            mrk = 0;
-            if(!(x + Panel.SIZE > Panel.WIDTH)){
-                Block ne = new Block(x + Panel.SIZE, y - Panel.SIZE);
-                Block e = new Block(x + Panel.SIZE, y);
-                for (int i = 0; i < Apath.blocks.size(); i++){
-                    if (mrk == 2) {
-                        break;
-                    }
-                    if (Apath.blocks.get(i).isEqual(ne)) {
-                        neighbours.add(Apath.blocks.get(i));
-                        mrk++;
-                    }
-                    if (Apath.blocks.get(i).isEqual(e)) {
-                        neighbours.add(Apath.blocks.get(i));
-                        mrk++;
-                    }
-                }
-            }
-            if(!(y - Panel.SIZE > Panel.HEIGHT)){
-                Block n = new Block(x, y + Panel.SIZE);
-                
-                for (int i = 0; i < Apath.blocks.size(); i++){
-                    if (Apath.blocks.get(i).isEqual(n)) {
-                        neighbours.add(Apath.blocks.get(i));
-                        break;
-                    }
-                }
-            }
         }
         return this.neighbours;
+    }
+
+    public void resetNeighbours(){
+        this.neighbours.clear();
     }
 }

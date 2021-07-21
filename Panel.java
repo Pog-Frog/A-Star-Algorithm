@@ -16,7 +16,7 @@ public class Panel extends Canvas
     public static int WIDTH = 800;
     public static int HEIGHT = (int) (WIDTH * 0.75);
     public static int SCALE = 1;
-    public static int SIZE = 100;
+    public static int SIZE = 50;
     public static String TITLE = "A* DEMO";
     private Graphics2D g;
     private BufferedImage image;
@@ -81,8 +81,8 @@ public class Panel extends Canvas
         } else {
             for (int j = 0; j < HEIGHT * SCALE; j += SIZE) {
                 for (int i = 0; i < WIDTH * SCALE; i += SIZE) {
-                    g.drawRect(i, j, SIZE, SIZE);
-                    Apath.blocks.add(new Block(i, j));
+                    g.drawRect(j, i, SIZE, SIZE);
+                    Apath.blocks[(int)j / SIZE][(int)i / SIZE] = new Block(i, j);
                 }
             }
             Apath.setup = true;
@@ -108,6 +108,7 @@ public class Panel extends Canvas
                     } else {
                         Apath.start_blk.setX(e.getX() - mouse_X);
                         Apath.start_blk.setY(e.getY() - mouse_Y);
+                        Apath.start_blk.resetNeighbours();
                     }
                     this.k = null;
                     this.e = null;
@@ -119,6 +120,7 @@ public class Panel extends Canvas
                     } else {
                         Apath.end_blk.setX(e.getX() - mouse_X);
                         Apath.end_blk.setY(e.getY() - mouse_Y);
+                        Apath.end_blk.resetNeighbours();
                     }
                     this.k = null;
                     this.e = null;

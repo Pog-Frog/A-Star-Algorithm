@@ -6,7 +6,8 @@ import java.awt.*;
 
 public class Apath {
     public static ArrayList<Block> walls = new ArrayList<Block>();
-    public static ArrayList<Block> blocks = new ArrayList<Block>();
+    public static int max_row = (Panel.HEIGHT / Panel.SIZE) - 1, max_col = (Panel.WIDTH / Panel.SIZE) - 1;
+    public static Block blocks[][] = new Block[max_row + 1][max_col + 1];
     public static Block start_blk, end_blk;
     public static boolean setup = false;
     public static boolean running = false;
@@ -27,7 +28,7 @@ public class Apath {
             g.setColor(Color.CYAN);
             g.fillRect(Apath.start_blk.getX(), Apath.start_blk.getY(), SIZE, SIZE);
             drawInfo(Apath.start_blk, g);
-            for(int i =0;i<Apath.start_blk.get_neighbours().size();i++){
+            for (int i = 0; i < Apath.start_blk.get_neighbours().size(); i++) {
                 drawInfo(Apath.start_blk.get_neighbours().get(i), g);
             }
         }
