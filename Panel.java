@@ -11,19 +11,21 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
-public class Panel extends Canvas implements Runnable , ActionListener, MouseListener, MouseMotionListener, MouseWheelListener, KeyListener{
-    private static int WIDTH = 800;
-    private static int HEIGHT = (int)(WIDTH * 0.75);
-    private static int SCALE = 1;
+public class Panel extends Canvas
+        implements Runnable, ActionListener, MouseListener, MouseMotionListener, MouseWheelListener, KeyListener {
+    public static int WIDTH = 800;
+    public static int HEIGHT = (int) (WIDTH * 0.75);
+    public static int SCALE = 1;
     public static int SIZE = 100;
-    public static String TITLE = "A* cooming";
+    public static String TITLE = "A* DEMO";
     private Graphics2D g;
     private BufferedImage image;
     private Thread thread;
     private boolean running;
     private long startTime, URDTimeMilli, waitTime;
     private int FPS = 30;
-    private Block start_blk , end_blk;
+    private MouseEvent e;
+    private KeyEvent k;
 
     public Panel() {
         super();
@@ -38,6 +40,10 @@ public class Panel extends Canvas implements Runnable , ActionListener, MouseLis
             thread = new Thread(this);
             thread.start();
         }
+        addKeyListener(this);
+        addMouseListener(this);
+        addMouseMotionListener(this);
+        addMouseWheelListener(this);
     }
 
     public void run() {
@@ -70,10 +76,16 @@ public class Panel extends Canvas implements Runnable , ActionListener, MouseLis
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, WIDTH * SCALE, HEIGHT * SCALE);
         g.setColor(Color.GRAY);
-        for (int j = 0; j < HEIGHT * SCALE; j += SIZE) {
-            for (int i = 0; i < WIDTH * SCALE; i += SIZE) {
-                g.drawRect(i, j, SIZE, SIZE);
+        if (Apath.setup) {
+            Apath.draw(g);
+        } else {
+            for (int j = 0; j < HEIGHT * SCALE; j += SIZE) {
+                for (int i = 0; i < WIDTH * SCALE; i += SIZE) {
+                    g.drawRect(i, j, SIZE, SIZE);
+                    Apath.blocks.add(new Block(i, j));
+                }
             }
+            Apath.setup = true;
         }
 
     }
@@ -84,47 +96,119 @@ public class Panel extends Canvas implements Runnable , ActionListener, MouseLis
         g2.dispose();
     }
 
-    public void Key_listener(MouseEvent e, KeyEvent key){
-        int keyCode = key.getKeyCode();
-        if(SwingUtilities.isLeftMouseButton(e)){
-            if(keyCode == KeyEvent.VK_S){
-                int mouse_X = e.getX() % SIZE;
-                int mouse_Y = e.getY() % SIZE;
-                if(start_blk == null){
-                    start_blk = new Block(e.getX() - mouse_X , e.getY() - mouse_Y);
+    public void Key_listener(MouseEvent e, KeyEvent k) {
+        int keyCode = k.getKeyCode();
+        if (SwingUtilities.isLeftMouseButton(e)) {
+            int mouse_X = e.getX() % SIZE;
+            int mouse_Y = e.getY() % SIZE;
+            if (keyCode == KeyEvent.VK_S) {
+                if((Apath.end_blk != null && !(Apath.end_blk.getX() == (e.getX() - mouse_X) && Apath.end_blk.getY() == (e.getY() - mouse_Y))) || Apath.end_blk == null){
+                    if (Apath.start_blk == null) {
+                        Apath.start_blk = new Block(e.getX() - mouse_X, e.getY() - mouse_Y);
+                    } else {
+                        Apath.start_blk.setX(e.getX() - mouse_X);
+                        Apath.start_blk.setY(e.getY() - mouse_Y);
+                    }
+                    this.k = null;
+                    this.e = null;
+                }
+            } else if (keyCode == KeyEvent.VK_E) {
+                if((Apath.start_blk != null && !(Apath.start_blk.getX() == (e.getX() - mouse_X) && Apath.start_blk.getY() == (e.getY() - mouse_Y))) || Apath.start_blk == null){
+                    if (Apath.end_blk == null) {
+                        Apath.end_blk = new Block(e.getX() - mouse_X, e.getY() - mouse_Y);
+                    } else {
+                        Apath.end_blk.setX(e.getX() - mouse_X);
+                        Apath.end_blk.setY(e.getY() - mouse_Y);
+                    }
+                    this.k = null;
+                    this.e = null;
+                }
+            } else if (keyCode == KeyEvent.VK_C) {
+                int wallX = e.getX() - (e.getX() % SIZE);
+                int WallY = e.getY() - (e.getY() % SIZE);
+                Block tmp = new Block(wallX, WallY);
+                if(!(tmp.equals(Apath.start_blk) || tmp.equals(Apath.end_blk))){
+                    Apath.walls.add(tmp);
+                    this.k = null;
+                    this.e = null;
+                }
+            }
+        } else if (SwingUtilities.isRightMouseButton(e)) {
+            int mouse_X = e.getX() - (e.getX() % SIZE);
+            int mouse_Y = e.getY() - (e.getY() % SIZE);
+            if (keyCode == KeyEvent.VK_S) {
+                if (Apath.start_blk != null && mouse_X == Apath.start_blk.getX() && Apath.start_blk.getY() == mouse_Y) {
+                    Apath.start_blk = null;
+                }
+            } else if (keyCode == KeyEvent.VK_E) {
+                if (Apath.end_blk != null && mouse_X == Apath.end_blk.getX() && Apath.end_blk.getY() == mouse_Y) {
+                    Apath.end_blk = null;
+                }
+            } else if (keyCode == KeyEvent.VK_C) {
+                for (int i = 0; i < Apath.walls.size(); i++) {
+                    if (Apath.walls.get(i).getX() == mouse_X && Apath.walls.get(i).getY() == mouse_Y) {
+                        Apath.walls.remove(i);
+                        break;
+                    }
                 }
             }
         }
     }
 
     @Override
-	public void mousePressed(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e) {
+    }
 
-	@Override
-	public void mouseReleased(MouseEvent e) {}
+    @Override
+    public void mousePressed(MouseEvent e) {
+        this.e = e;
+        Key_listener(this.e, k);
+    }
 
-	@Override
-	public void mouseEntered(MouseEvent e) {}
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        this.e = null;
+    }
 
-	@Override
-	public void mouseExited(MouseEvent e) {}
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
 
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		
-	}
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
 
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        this.e = e;
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        int x = e.getX();
+        int y = e.getY();
+        int height = this.getHeight();
+    }
+
+    @Override
     public void keyTyped(KeyEvent key) {
     }
 
+    @Override
     public void keyPressed(KeyEvent key) {
-        int ketCode = key.getKeyCode();
-        
+        this.k = key;
     }
 
+    @Override
     public void keyReleased(KeyEvent key) {
-        int ketCode = key.getKeyCode();
-        
+        this.k = null;
+    }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+    }
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent m) {
     }
 }

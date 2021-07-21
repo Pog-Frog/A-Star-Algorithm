@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public class Block {
-    private int start_cost, min_cost;
+    private int start_cost = 0, min_cost = 0;
     private int x ,y;
-    private Block parent;
+    private Block parent = null;
     private int size = Panel.SIZE;
     private ArrayList <Block> neighbours = new ArrayList<Block>();
 
@@ -26,6 +26,13 @@ public class Block {
 
     public void setY(int y){
         this.y = y;
+    }
+
+    public boolean isEqual( Block b){
+        if(this.x == b.getX() && this.y == b.getY()){
+            return true;
+        }
+        return false;
     }
 
     public int getST_cost(){
@@ -51,6 +58,4 @@ public class Block {
     public void setParent(Block parent){
         this.parent = parent;
     }
-
-    
 }
