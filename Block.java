@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Block {
+public class Block implements Comparable <Block>{
     private int start_cost = 0, end_cost = 0, tot_cost = 0;
     private int x, y;
     private Block parent = null;
@@ -123,5 +123,9 @@ public class Block {
 
     public void setNeighbours(ArrayList<Block> lst){
         Collections.copy(this.neighbours, lst);
+    }
+
+    public int compareTo(Block blk) {
+        return this.getTot_cost() - blk.getTot_cost();
     }
 }

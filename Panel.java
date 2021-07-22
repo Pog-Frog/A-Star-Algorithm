@@ -99,64 +99,71 @@ public class Panel extends Canvas
     }
 
     public void Key_listener(MouseEvent e, KeyEvent k) {
-        int keyCode = k.getKeyCode();
-        if (SwingUtilities.isLeftMouseButton(e)) {
-            int mouse_X = e.getX() % SIZE;
-            int mouse_Y = e.getY() % SIZE;
-            if (keyCode == KeyEvent.VK_S) {
-                if((Apath.end_blk != null && !(Apath.end_blk.getX() == (e.getX() - mouse_X) && Apath.end_blk.getY() == (e.getY() - mouse_Y))) || Apath.end_blk == null){
-                    if (Apath.start_blk == null) {
-                        Apath.start_blk = new Block(e.getX() - mouse_X, e.getY() - mouse_Y);
-                    } else {
-                        Apath.start_blk.setX(e.getX() - mouse_X);
-                        Apath.start_blk.setY(e.getY() - mouse_Y);
-                        Apath.start_blk.resetNeighbours();
+        try{
+            int keyCode = k.getKeyCode();
+            if (SwingUtilities.isLeftMouseButton(e)) {
+                int mouse_X = e.getX() % SIZE;
+                int mouse_Y = e.getY() % SIZE;
+                if (keyCode == KeyEvent.VK_S) {
+                    if(Apath.end_blk == null || !(Apath.end_blk.getX() == (e.getX() - mouse_X) && Apath.end_blk.getY() == (e.getY() - mouse_Y))){
+                        if (Apath.start_blk == null) {
+                            Apath.start_blk = new Block(e.getX() - mouse_X, e.getY() - mouse_Y);
+                        } else {
+                            Apath.start_blk.setX(e.getX() - mouse_X);
+                            Apath.start_blk.setY(e.getY() - mouse_Y);
+                            Apath.start_blk.resetNeighbours();
+                        }
+                        this.k = null;
+                        this.e = null;
                     }
-                    this.k = null;
-                    this.e = null;
-                }
-            } else if (keyCode == KeyEvent.VK_E) {
-                if((Apath.start_blk != null && !(Apath.start_blk.getX() == (e.getX() - mouse_X) && Apath.start_blk.getY() == (e.getY() - mouse_Y))) || Apath.start_blk == null){
-                    if (Apath.end_blk == null) {
-                        Apath.end_blk = new Block(e.getX() - mouse_X, e.getY() - mouse_Y);
-                    } else {
-                        Apath.end_blk.setX(e.getX() - mouse_X);
-                        Apath.end_blk.setY(e.getY() - mouse_Y);
-                        Apath.end_blk.resetNeighbours();
+                } else if (keyCode == KeyEvent.VK_E) {
+                    if(Apath.start_blk == null || !(Apath.start_blk.getX() == (e.getX() - mouse_X) && Apath.start_blk.getY() == (e.getY() - mouse_Y))){
+                        if (Apath.end_blk == null) {
+                            Apath.end_blk = new Block(e.getX() - mouse_X, e.getY() - mouse_Y);
+                        } else {
+                            Apath.end_blk.setX(e.getX() - mouse_X);
+                            Apath.end_blk.setY(e.getY() - mouse_Y);
+                            Apath.end_blk.resetNeighbours();
+                        }
+                        this.k = null;
+                        this.e = null;
                     }
-                    this.k = null;
-                    this.e = null;
+                } else if (keyCode == KeyEvent.VK_C) {
+                    int wallX = e.getX() - (e.getX() % SIZE);
+                    int WallY = e.getY() - (e.getY() % SIZE);
+                    Block tmp = new Block(wallX, WallY);
+                    if(!(tmp.equals(Apath.start_blk) || tmp.equals(Apath.end_blk))){
+                        Apath.walls.add(tmp);
+                        this.k = null;
+                        this.e = null;
+                    }
                 }
-            } else if (keyCode == KeyEvent.VK_C) {
-                int wallX = e.getX() - (e.getX() % SIZE);
-                int WallY = e.getY() - (e.getY() % SIZE);
-                Block tmp = new Block(wallX, WallY);
-                if(!(tmp.equals(Apath.start_blk) || tmp.equals(Apath.end_blk))){
-                    Apath.walls.add(tmp);
-                    this.k = null;
-                    this.e = null;
+            } else if (SwingUtilities.isRightMouseButton(e)) {
+                int mouse_X = e.getX() - (e.getX() % SIZE);
+                int mouse_Y = e.getY() - (e.getY() % SIZE);
+                if (keyCode == KeyEvent.VK_S) {
+                    if (Apath.start_blk != null && !Apath.running && mouse_X == Apath.start_blk.getX() && Apath.start_blk.getY() == mouse_Y) {
+                        Apath.start_blk = null;
+                        Apath.currentBlock = null;
+                    }
+                } else if (keyCode == KeyEvent.VK_E) {
+                    if (Apath.end_blk != null && !Apath.running && mouse_X == Apath.end_blk.getX() && Apath.end_blk.getY() == mouse_Y) {
+                        Apath.end_blk = null;
+                        Apath.currentBlock = null;
+                    }
+                } else if (keyCode == KeyEvent.VK_C) {
+                    for (int i = 0; i < Apath.walls.size(); i++) {
+                        if (Apath.walls.get(i).getX() == mouse_X && Apath.walls.get(i).getY() == mouse_Y) {
+                            Apath.walls.remove(i);
+                            break;
+                        }
+                    }
                 }
             }
-        } else if (SwingUtilities.isRightMouseButton(e)) {
-            int mouse_X = e.getX() - (e.getX() % SIZE);
-            int mouse_Y = e.getY() - (e.getY() % SIZE);
-            if (keyCode == KeyEvent.VK_S) {
-                if (Apath.start_blk != null && mouse_X == Apath.start_blk.getX() && Apath.start_blk.getY() == mouse_Y) {
-                    Apath.start_blk = null;
-                }
-            } else if (keyCode == KeyEvent.VK_E) {
-                if (Apath.end_blk != null && mouse_X == Apath.end_blk.getX() && Apath.end_blk.getY() == mouse_Y) {
-                    Apath.end_blk = null;
-                }
-            } else if (keyCode == KeyEvent.VK_C) {
-                for (int i = 0; i < Apath.walls.size(); i++) {
-                    if (Apath.walls.get(i).getX() == mouse_X && Apath.walls.get(i).getY() == mouse_Y) {
-                        Apath.walls.remove(i);
-                        break;
-                    }
-                }
-            }
+        }catch (NullPointerException ignored){
+
         }
+
     }
 
     @Override

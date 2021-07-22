@@ -4,6 +4,7 @@ import java.util.Collection;
 import javax.swing.*;
 
 import java.awt.*;
+import java.util.Collections;
 
 public class Apath {
     public static ArrayList<Block> walls = new ArrayList<Block>();
@@ -73,7 +74,7 @@ public class Apath {
                 Apath.start_blk.get_neighbours().get(i).setEnd_cost(tmp_e);
                 Apath.start_blk.get_neighbours().get(i).setTot_cost(tmp_s + tmp_e);
             }
-            Apath.start_blk.setNeighbours(Sort.Sort(Apath.start_blk.get_neighbours()));
+            Collections.sort(Apath.start_blk.get_neighbours(), new Compare());
             Apath.currentBlock = Apath.start_blk.get_neighbours().get(0);
             for(int i = 0;i<Apath.currentBlock.get_neighbours().size();i++){
                 int x = Apath.currentBlock.get_neighbours().get(i).getX();
