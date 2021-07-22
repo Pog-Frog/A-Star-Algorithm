@@ -8,7 +8,7 @@ public class Sort {
         }
         int current_pos = 0;
         for(int i =1;i<lst.size();i++){
-            if(lst.get(i).getTot_cost() > lst.get(0).getTot_cost()){
+            if(lst.get(i).getTot_cost() <= lst.get(0).getTot_cost()){
                 current_pos++;
                 Collections.swap(lst, i, current_pos);
             }
@@ -25,13 +25,9 @@ public class Sort {
         }
         left = Sort(left);
         right = Sort(right);
-        for(int i = 0;i<left.size();i++){
-            result.add(left.get(i));
-        }
+        result.addAll(left);
         result.add(lst.get(current_pos));
-        for(int i = 0;i<left.size();i++){
-            result.add(right.get(i));
-        }
+        result.addAll(right);
         return lst;
     }
 }

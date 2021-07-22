@@ -75,34 +75,42 @@ public class Block {
             int col = (int) x / size, row = (int) y / size;
             //w
             if(!(col - 1 < 0)){
+                if(!((Apath.blocks[row][col - 1].isEqual(Apath.start_blk) || Apath.blocks[row][col - 1].isEqual(Apath.end_blk))))
                 neighbours.add(Apath.blocks[row][col - 1]);
             }
             // nw
             if (!(row - 1 < 0 || col - 1 < 0)) {
+                if(!((Apath.blocks[row - 1][col - 1].isEqual(Apath.start_blk) || Apath.blocks[row - 1][col - 1].isEqual(Apath.end_blk))))
                 neighbours.add(Apath.blocks[row - 1][col - 1]);
             }
             // n
             if (!(row - 1 < 0 && col >= 0)) {
+                if(!((Apath.blocks[row - 1][col].isEqual(Apath.start_blk) || Apath.blocks[row - 1][col].isEqual(Apath.end_blk))))
                 neighbours.add(Apath.blocks[row - 1][col]);
             }
             // ne
             if (!(row - 1 < 0 || col + 1 > Apath.max_col)) {
+                if(!((Apath.blocks[row - 1][col + 1].isEqual(Apath.start_blk) || Apath.blocks[row - 1][col + 1].isEqual(Apath.end_blk))))
                 neighbours.add(Apath.blocks[row - 1][col + 1]);
             }
             // e
             if (!(col + 1 > Apath.max_col)) {
+                if(!((Apath.blocks[row][col + 1].isEqual(Apath.start_blk) || Apath.blocks[row][col + 1].isEqual(Apath.end_blk))))
                 neighbours.add(Apath.blocks[row][col + 1]);
             }
             // se
             if (!(row + 1 > Apath.max_row || col + 1 > Apath.max_col)) {
+                if(!((Apath.blocks[row + 1][col + 1].isEqual(Apath.start_blk) || Apath.blocks[row + 1][col + 1].isEqual(Apath.end_blk))))
                 neighbours.add(Apath.blocks[row + 1][col + 1]);
             }
             // s
             if (!(row + 1 > Apath.max_row)) {
+                if(!((Apath.blocks[row + 1][col].isEqual(Apath.start_blk) || Apath.blocks[row + 1][col].isEqual(Apath.end_blk))))
                 neighbours.add(Apath.blocks[row + 1][col]);
             }
             // sw
             if (!(col - 1 < 0 || row + 1 > Apath.max_row )) {
+                if(!((Apath.blocks[row + 1][col - 1].isEqual(Apath.start_blk) || Apath.blocks[row + 1][col - 1].isEqual(Apath.end_blk))))
                 neighbours.add(Apath.blocks[row + 1][col - 1]);
             }
 
