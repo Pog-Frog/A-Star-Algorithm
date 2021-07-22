@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Block {
     private int start_cost = 0, end_cost = 0, tot_cost = 0;
@@ -110,5 +112,9 @@ public class Block {
 
     public void resetNeighbours(){
         this.neighbours.clear();
+    }
+
+    public void setNeighbours(ArrayList<Block> lst){
+        Collections.copy(this.neighbours, lst);
     }
 }

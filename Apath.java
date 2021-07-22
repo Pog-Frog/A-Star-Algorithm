@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import javax.swing.*;
 
@@ -8,7 +10,7 @@ public class Apath {
     public static ArrayList<Block> walls = new ArrayList<Block>();
     public static int max_row = (Panel.HEIGHT / Panel.SIZE) - 1, max_col = (Panel.WIDTH / Panel.SIZE) - 1;
     public static Block blocks[][] = new Block[max_row + 1][max_col + 1];
-    public static Block start_blk, end_blk;
+    public static Block start_blk, end_blk, currentBlock;
     public static boolean setup = false;
     public static boolean running = false;
     private static int SIZE = Panel.SIZE;
@@ -27,7 +29,7 @@ public class Apath {
         if (start_blk != null) {
             g.setColor(Color.CYAN);
             g.fillRect(Apath.start_blk.getX(), Apath.start_blk.getY(), SIZE, SIZE);
-            drawInfo(Apath.start_blk, g);
+            
             for (int i = 0; i < Apath.start_blk.get_neighbours().size(); i++) {
                 drawInfo(Apath.start_blk.get_neighbours().get(i), g);
             }
@@ -35,7 +37,13 @@ public class Apath {
         if (end_blk != null) {
             g.setColor(Color.yellow);
             g.fillRect(Apath.end_blk.getX(), Apath.end_blk.getY(), SIZE, SIZE);
-            drawInfo(Apath.end_blk, g);
+        }
+        if(currentBlock != null){
+            g.setColor(Color.MAGENTA);
+            drawInfo(Apath.start_blk, g);
+            for (int i = 0; i < Apath.start_blk.get_neighbours().size(); i++) {
+                drawInfo(Apath.currentBlock.get_neighbours().get(i), g);
+            }
         }
     }
 
@@ -51,14 +59,20 @@ public class Apath {
         }
     }
 
-    public void findPath(Block tmp) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (i == 1 && j == 1) {
-                    continue;
-                }
-
+    public static void findPath() {
+        if(Apath.end_blk != null && Apath.start_blk != null){
+            for(int i = 0;i<Apath.start_blk.get_neighbours().size();i++){
+                int x = Apath.start_blk.get_neighbours().get(i).getX();
+                int y = Apath.start_blk.get_neighbours().get(i).getY();
+                int tmp_s= (int)Math.sqrt(Math.pow(Math.abs(x - Apath.start_blk.getX()), 2) + Math.pow(Math.abs(y - Apath.start_blk.getY()), 2));
+                int tmp_e = (int)Math.sqrt(Math.pow(Math.abs(x - Apath.end_blk.getX()), 2) + Math.pow(Math.abs(y - Apath.end_blk.getY()), 2));
+                Apath.start_blk.get_neighbours().get(i).setST_cost(tmp_s);
+                Apath.start_blk.get_neighbours().get(i).setEnd_cost(tmp_e);
+                Apath.start_blk.get_neighbours().get(i).setTot_cost(tmp_s + tmp_e);
             }
+            Apath.start_blk.setNeighbours(Sort.Sort(Apath.start_blk.get_neighbours()));
+            Apath.currentBlock = Apath.start_blk.get_neighbours().get(0);
         }
     }
+
 }
