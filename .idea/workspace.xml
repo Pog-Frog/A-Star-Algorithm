@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="61f9e279-0947-4c08-893f-3895d4f172fe" name="Default Changelist" comment="">
+    <list default="true" id="7596fd9d-cdfe-4961-99ba-8937df3405d2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A-Star-Algorithm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/A-Star-Algorithm.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Apath.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Apath.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Block.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Block.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Compare.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Compare.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Panel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Panel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Sort.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Sort.class" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,22 +22,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1vhlQGfzqtTfJTIDe18rE8kTw5I" />
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
+  <component name="ProjectId" id="1vi7CzWc83RIWtDRTQwIDRy0K6e" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -44,32 +46,15 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="61f9e279-0947-4c08-893f-3895d4f172fe" name="Default Changelist" comment="" />
-      <created>1627022184102</created>
+      <changelist id="7596fd9d-cdfe-4961-99ba-8937df3405d2" name="Default Changelist" comment="" />
+      <created>1627032937799</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1627022184102</updated>
-      <workItem from="1627022188648" duration="401000" />
+      <updated>1627032937799</updated>
     </task>
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>
