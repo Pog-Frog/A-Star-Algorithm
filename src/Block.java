@@ -7,6 +7,7 @@ public class Block implements Comparable <Block>{
     private Block parent = null;
     private int size = Panel.SIZE;
     private ArrayList<Block> neighbours = new ArrayList<Block>();
+    private boolean wall = false;
 
     public Block(int x, int y) {
         this.x = x;
@@ -68,48 +69,55 @@ public class Block implements Comparable <Block>{
         this.parent = parent;
     }
 
+    public void set_wall(boolean wall){
+        this.wall = wall;
+    }
+
+    public boolean check_wall(){
+        return this.wall;
+    }
+
     public ArrayList<Block> get_neighbours() {
         if (this.neighbours.size() < 1) {
-            int mrk = 0;
             int col = (int) x / size, row = (int) y / size;
             //w
             if(!(col - 1 < 0)){
-                if(!((Apath.blocks[row][col - 1].isEqual(Apath.start_blk) || Apath.blocks[row][col - 1].isEqual(Apath.end_blk))))
+                if(!((Apath.blocks[row][col - 1].isEqual(Apath.start_blk) || Apath.blocks[row][col - 1].isEqual(Apath.end_blk) || Apath.blocks[row][col - 1].check_wall())))
                 neighbours.add(Apath.blocks[row][col - 1]);
             }
             // nw
             if (!(row - 1 < 0 || col - 1 < 0)) {
-                if(!((Apath.blocks[row - 1][col - 1].isEqual(Apath.start_blk) || Apath.blocks[row - 1][col - 1].isEqual(Apath.end_blk))))
+                if(!((Apath.blocks[row - 1][col - 1].isEqual(Apath.start_blk) || Apath.blocks[row - 1][col - 1].isEqual(Apath.end_blk) || Apath.blocks[row - 1][col - 1].check_wall())))
                 neighbours.add(Apath.blocks[row - 1][col - 1]);
             }
             // n
             if (!(row - 1 < 0 && col >= 0)) {
-                if(!((Apath.blocks[row - 1][col].isEqual(Apath.start_blk) || Apath.blocks[row - 1][col].isEqual(Apath.end_blk))))
+                if(!((Apath.blocks[row - 1][col].isEqual(Apath.start_blk) || Apath.blocks[row - 1][col].isEqual(Apath.end_blk) || Apath.blocks[row - 1][col].check_wall())))
                 neighbours.add(Apath.blocks[row - 1][col]);
             }
             // ne
             if (!(row - 1 < 0 || col + 1 > Apath.max_col)) {
-                if(!((Apath.blocks[row - 1][col + 1].isEqual(Apath.start_blk) || Apath.blocks[row - 1][col + 1].isEqual(Apath.end_blk))))
+                if(!((Apath.blocks[row - 1][col + 1].isEqual(Apath.start_blk) || Apath.blocks[row - 1][col + 1].isEqual(Apath.end_blk) || Apath.blocks[row - 1][col + 1].check_wall())))
                 neighbours.add(Apath.blocks[row - 1][col + 1]);
             }
             // e
             if (!(col + 1 > Apath.max_col)) {
-                if(!((Apath.blocks[row][col + 1].isEqual(Apath.start_blk) || Apath.blocks[row][col + 1].isEqual(Apath.end_blk))))
+                if(!((Apath.blocks[row][col + 1].isEqual(Apath.start_blk) || Apath.blocks[row][col + 1].isEqual(Apath.end_blk) || Apath.blocks[row][col + 1].check_wall())))
                 neighbours.add(Apath.blocks[row][col + 1]);
             }
             // se
             if (!(row + 1 > Apath.max_row || col + 1 > Apath.max_col)) {
-                if(!((Apath.blocks[row + 1][col + 1].isEqual(Apath.start_blk) || Apath.blocks[row + 1][col + 1].isEqual(Apath.end_blk))))
+                if(!((Apath.blocks[row + 1][col + 1].isEqual(Apath.start_blk) || Apath.blocks[row + 1][col + 1].isEqual(Apath.end_blk) || Apath.blocks[row + 1][col + 1].check_wall())))
                 neighbours.add(Apath.blocks[row + 1][col + 1]);
             }
             // s
             if (!(row + 1 > Apath.max_row)) {
-                if(!((Apath.blocks[row + 1][col].isEqual(Apath.start_blk) || Apath.blocks[row + 1][col].isEqual(Apath.end_blk))))
+                if(!((Apath.blocks[row + 1][col].isEqual(Apath.start_blk) || Apath.blocks[row + 1][col].isEqual(Apath.end_blk) || Apath.blocks[row + 1][col].check_wall())))
                 neighbours.add(Apath.blocks[row + 1][col]);
             }
             // sw
             if (!(col - 1 < 0 || row + 1 > Apath.max_row )) {
-                if(!((Apath.blocks[row + 1][col - 1].isEqual(Apath.start_blk) || Apath.blocks[row + 1][col - 1].isEqual(Apath.end_blk))))
+                if(!((Apath.blocks[row + 1][col - 1].isEqual(Apath.start_blk) || Apath.blocks[row + 1][col - 1].isEqual(Apath.end_blk) || Apath.blocks[row + 1][col - 1].check_wall())))
                 neighbours.add(Apath.blocks[row + 1][col - 1]);
             }
 

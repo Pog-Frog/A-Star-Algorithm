@@ -133,7 +133,16 @@ public class Panel extends Canvas
                     int WallY = e.getY() - (e.getY() % SIZE);
                     Block tmp = new Block(wallX, WallY);
                     if(!(tmp.equals(Apath.start_blk) || tmp.equals(Apath.end_blk))){
+                        tmp.set_wall(true);
                         Apath.walls.add(tmp);
+                        for (int i = 0;i < Apath.max_row + 1;i++) {
+                            for(int j = 0 ;j< Apath.max_col + 1;j++){
+                                if(Apath.blocks[i][j].isEqual(tmp)){
+                                    Apath.blocks[i][j].set_wall(true);
+                                    break;
+                                }
+                            }
+                        }
                         this.k = null;
                         this.e = null;
                     }
@@ -152,9 +161,17 @@ public class Panel extends Canvas
                         Apath.currentBlock = null;
                     }
                 } else if (keyCode == KeyEvent.VK_C) {
-                    for (int i = 0; i < Apath.walls.size(); i++) {
-                        if (Apath.walls.get(i).getX() == mouse_X && Apath.walls.get(i).getY() == mouse_Y) {
-                            Apath.walls.remove(i);
+                    for (int a = 0; a < Apath.walls.size(); a++) {
+                        if (Apath.walls.get(a).getX() == mouse_X && Apath.walls.get(a).getY() == mouse_Y) {
+                            for (int i = 0;i < Apath.max_row + 1;i++) {
+                                for(int j = 0 ;j< Apath.max_col + 1;j++){
+                                    if(Apath.blocks[i][j].isEqual(Apath.walls.get(a))){
+                                        Apath.blocks[i][j].set_wall(false);
+                                        break;
+                                    }
+                                }
+                            }
+                            Apath.walls.remove(a);
                             break;
                         }
                     }
