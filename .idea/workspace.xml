@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="29ae3a94-3d46-4407-b04a-a9fe85ba764d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/A-Star-Algorithm.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Apath.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Block.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Compare.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Panel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Sort.class" beforeDir="false" />
-    </list>
+    <list default="true" id="29ae3a94-3d46-4407-b04a-a9fe85ba764d" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
