@@ -8,7 +8,7 @@ public class Panel extends Canvas
     public static int WIDTH = 800;
     public static int HEIGHT = (int) (WIDTH * 0.75);
     public static int SCALE = 1;
-    public static int SIZE = 50;
+    public static int SIZE = 25;
     public static String TITLE = "A* DEMO";
     private Graphics2D g;
     private BufferedImage image;
@@ -196,6 +196,11 @@ public class Panel extends Canvas
     @Override
     public void mouseDragged(MouseEvent e) {
         this.e = e;
+        Key_listener(this.e, k);
+        Apath.path.clear();
+
+        this.k = null;
+        this.e = null;
     }
 
     @Override

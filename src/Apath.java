@@ -43,7 +43,7 @@ public class Apath {
                         drawInfo(path.get(i), g, Color.green);
                     }
                     for (int j = 0; j < path.get(i).get_neighbours().size(); j++) {
-                        drawInfo(path.get(i).get_neighbours().get(j), g, null);
+                        drawInfo(path.get(i).get_neighbours().get(j), g, Color.pink);
                     }
                 }
             }
@@ -121,7 +121,8 @@ public class Apath {
                     }
                     path.add(path.get(i).get_neighbours().get(0));
                     System.out.println(path.size());
-                    i++;
+                    if (!(path.get(i).get_neighbours().size() == 0))
+                        i++;
                 }
             }
 

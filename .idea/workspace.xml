@@ -4,10 +4,8 @@
     <list default="true" id="ecd50180-0910-41ca-846c-e68b1e03a790" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Apath.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Apath.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Block.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Block.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Panel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Panel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Apath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Apath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Block.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panel.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -72,6 +70,9 @@
       <workItem from="1627421984384" duration="3061000" />
       <workItem from="1627460038556" duration="905000" />
       <workItem from="1627521471065" duration="965000" />
+      <workItem from="1627572509271" duration="6634000" />
+      <workItem from="1627588457737" duration="990000" />
+      <workItem from="1627598619332" duration="919000" />
     </task>
     <servers />
   </component>
