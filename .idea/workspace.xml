@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ecd50180-0910-41ca-846c-e68b1e03a790" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Apath.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Apath.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Block.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Block.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Panel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Panel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Apath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Apath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Block.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panel.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -62,6 +66,12 @@
       <workItem from="1627263771120" duration="1809000" />
       <workItem from="1627267339242" duration="2008000" />
       <workItem from="1627270057042" duration="330000" />
+      <workItem from="1627360834847" duration="649000" />
+      <workItem from="1627363998859" duration="607000" />
+      <workItem from="1627395270570" duration="12638000" />
+      <workItem from="1627421984384" duration="3061000" />
+      <workItem from="1627460038556" duration="905000" />
+      <workItem from="1627521471065" duration="965000" />
     </task>
     <servers />
   </component>
@@ -80,5 +90,20 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="path" language="JAVA" />
+        <watch expression="Apath.currentBlock" language="JAVA" />
+        <watch expression="currentBlock.neighbours" />
+        <watch expression="currentBlock.neighbours" language="JAVA" />
+        <watch expression="Apath.currentBlock" language="JAVA" />
+        <watch expression="path.get(i)" language="JAVA" />
+        <watch expression="currentBlock.neighbours" language="JAVA" />
+        <watch expression="path.get(0).neighbours.get(0)" />
+        <watch expression="path.get(i).parent" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

@@ -31,10 +31,7 @@ public class Block implements Comparable <Block>{
     }
 
     public boolean isEqual(Block b) {
-        if (this.x == b.getX() && this.y == b.getY()) {
-            return true;
-        }
-        return false;
+        return this.x == b.getX() && this.y == b.getY();
     }
 
     public int getST_cost() {
@@ -77,50 +74,108 @@ public class Block implements Comparable <Block>{
         return this.wall;
     }
 
-    public ArrayList<Block> get_neighbours() {
+    public synchronized ArrayList<Block> get_neighbours() {
         if (this.neighbours.size() < 1) {
-            int col = (int) x / size, row = (int) y / size;
+            int col = x / size, row = y / size;
             //w
             if(!(col - 1 < 0)){
-                if(!((Apath.blocks[row][col - 1].isEqual(Apath.start_blk) || Apath.blocks[row][col - 1].isEqual(Apath.end_blk) || Apath.blocks[row][col - 1].check_wall())))
-                neighbours.add(Apath.blocks[row][col - 1]);
+                if (!((Apath.blocks[row][col - 1].isEqual(Apath.start_blk) || Apath.blocks[row][col - 1].isEqual(Apath.end_blk) || Apath.blocks[row][col - 1].check_wall()))) {
+                    if (this.parent != null) {
+                        if (!(Apath.blocks[row][col - 1].isEqual(this.parent))) {
+                            neighbours.add(Apath.blocks[row][col - 1]);
+                        }
+                    } else {
+                        neighbours.add(Apath.blocks[row][col - 1]);
+                    }
+                }
             }
             // nw
             if (!(row - 1 < 0 || col - 1 < 0)) {
                 if(!((Apath.blocks[row - 1][col - 1].isEqual(Apath.start_blk) || Apath.blocks[row - 1][col - 1].isEqual(Apath.end_blk) || Apath.blocks[row - 1][col - 1].check_wall())))
-                neighbours.add(Apath.blocks[row - 1][col - 1]);
+                    if (this.parent != null) {
+                        if (!(Apath.blocks[row - 1][col - 1].isEqual(this.parent))) {
+                            neighbours.add(Apath.blocks[row - 1][col - 1]);
+                        }
+                    } else {
+                        neighbours.add(Apath.blocks[row - 1][col - 1]);
+                    }
             }
             // n
             if (!(row - 1 < 0 && col >= 0)) {
                 if(!((Apath.blocks[row - 1][col].isEqual(Apath.start_blk) || Apath.blocks[row - 1][col].isEqual(Apath.end_blk) || Apath.blocks[row - 1][col].check_wall())))
-                neighbours.add(Apath.blocks[row - 1][col]);
+                    if (this.parent != null) {
+                        if (!(Apath.blocks[row - 1][col].isEqual(this.parent))) {
+                            neighbours.add(Apath.blocks[row - 1][col]);
+                        }
+                    } else {
+                        neighbours.add(Apath.blocks[row - 1][col]);
+                    }
             }
             // ne
             if (!(row - 1 < 0 || col + 1 > Apath.max_col)) {
                 if(!((Apath.blocks[row - 1][col + 1].isEqual(Apath.start_blk) || Apath.blocks[row - 1][col + 1].isEqual(Apath.end_blk) || Apath.blocks[row - 1][col + 1].check_wall())))
-                neighbours.add(Apath.blocks[row - 1][col + 1]);
+                    if (this.parent != null) {
+                        if (!(Apath.blocks[row - 1][col + 1].isEqual(this.parent))) {
+                            neighbours.add(Apath.blocks[row - 1][col + 1]);
+                        }
+                    } else {
+                        neighbours.add(Apath.blocks[row - 1][col + 1]);
+                    }
             }
             // e
             if (!(col + 1 > Apath.max_col)) {
                 if(!((Apath.blocks[row][col + 1].isEqual(Apath.start_blk) || Apath.blocks[row][col + 1].isEqual(Apath.end_blk) || Apath.blocks[row][col + 1].check_wall())))
-                neighbours.add(Apath.blocks[row][col + 1]);
+                    if (this.parent != null) {
+                        if (!(Apath.blocks[row][col + 1].isEqual(this.parent))) {
+                            neighbours.add(Apath.blocks[row][col + 1]);
+                        }
+                    } else {
+                        neighbours.add(Apath.blocks[row][col + 1]);
+                    }
             }
             // se
             if (!(row + 1 > Apath.max_row || col + 1 > Apath.max_col)) {
                 if(!((Apath.blocks[row + 1][col + 1].isEqual(Apath.start_blk) || Apath.blocks[row + 1][col + 1].isEqual(Apath.end_blk) || Apath.blocks[row + 1][col + 1].check_wall())))
-                neighbours.add(Apath.blocks[row + 1][col + 1]);
+                    if (this.parent != null) {
+                        if (!(Apath.blocks[row + 1][col + 1].isEqual(this.parent))) {
+                            neighbours.add(Apath.blocks[row + 1][col + 1]);
+                        }
+                    } else {
+                        neighbours.add(Apath.blocks[row + 1][col + 1]);
+                    }
             }
             // s
             if (!(row + 1 > Apath.max_row)) {
                 if(!((Apath.blocks[row + 1][col].isEqual(Apath.start_blk) || Apath.blocks[row + 1][col].isEqual(Apath.end_blk) || Apath.blocks[row + 1][col].check_wall())))
-                neighbours.add(Apath.blocks[row + 1][col]);
+                    if (this.parent != null) {
+                        if (!(Apath.blocks[row + 1][col].isEqual(this.parent))) {
+                            neighbours.add(Apath.blocks[row + 1][col]);
+                        }
+                    } else {
+                        neighbours.add(Apath.blocks[row + 1][col]);
+                    }
             }
             // sw
             if (!(col - 1 < 0 || row + 1 > Apath.max_row )) {
                 if(!((Apath.blocks[row + 1][col - 1].isEqual(Apath.start_blk) || Apath.blocks[row + 1][col - 1].isEqual(Apath.end_blk) || Apath.blocks[row + 1][col - 1].check_wall())))
-                neighbours.add(Apath.blocks[row + 1][col - 1]);
+                    if (this.parent != null) {
+                        if (!(Apath.blocks[row + 1][col - 1].isEqual(this.parent))) {
+                            neighbours.add(Apath.blocks[row + 1][col - 1]);
+                        }
+                    } else {
+                        neighbours.add(Apath.blocks[row + 1][col - 1]);
+                    }
             }
-
+            int tmp_s, tmp_e;
+            for (int j = 0; j < neighbours.size(); j++) {
+                int x = neighbours.get(j).getX();
+                int y = neighbours.get(j).getY();
+                tmp_s = (int) Math.sqrt(Math.pow(Math.abs(x - Apath.start_blk.getX()), 2) + Math.pow(Math.abs(y - Apath.start_blk.getY()), 2));
+                tmp_e = (int) Math.sqrt(Math.pow(Math.abs(x - Apath.end_blk.getX()), 2) + Math.pow(Math.abs(y - Apath.end_blk.getY()), 2));
+                neighbours.get(j).setST_cost(tmp_s);
+                neighbours.get(j).setEnd_cost(tmp_e);
+                neighbours.get(j).setTot_cost(tmp_s + tmp_e);
+            }
         }
         return this.neighbours;
     }
