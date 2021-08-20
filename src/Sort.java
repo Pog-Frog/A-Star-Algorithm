@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Sort {
-    public static ArrayList<Block> Sort(ArrayList<Block> lst){
+    public static ArrayList<Block> sort(ArrayList<Block> lst) {
         if(lst.size() < 2){
             return lst;
         }
@@ -23,8 +23,8 @@ public class Sort {
         for(int i = current_pos +1 ;i<lst.size();i++){
             right.add(lst.get(i));
         }
-        left = Sort(left);
-        right = Sort(right);
+        left = sort(left);
+        right = sort(right);
         result.addAll(left);
         result.add(lst.get(current_pos));
         result.addAll(right);

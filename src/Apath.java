@@ -5,14 +5,21 @@ import java.util.Collections;
 public class Apath {
     public static ArrayList<Block> walls = new ArrayList<Block>();
     public static ArrayList<Block> path = new ArrayList<Block>();
+    private static ArrayList<Block> corrections = new ArrayList<Block>();
     public static int max_row = (Panel.HEIGHT / Panel.SIZE) - 1, max_col = (Panel.WIDTH / Panel.SIZE) - 1;
     public static Block[][] blocks = new Block[max_row + 1][max_col + 1];
     public static Block start_blk, end_blk, currentBlock;
     public static boolean setup = false;
     public static boolean running = false;
     private static int SIZE = Panel.SIZE;
+    public static boolean found = false;
 
     public static void draw(Graphics2D g) {
+        if (start_blk != null && end_blk != null) {
+            for (int i = 0; i < Apath.start_blk.get_neighbours().size(); i++) {
+                drawInfo(Apath.start_blk.get_neighbours().get(i), g, null);
+            }
+        }
         g.setColor(Color.GRAY);
         for (int i = 0; i < max_row + 1; i++) {
             for (int j = 0; j < max_col + 1; j++) {
@@ -43,17 +50,18 @@ public class Apath {
                         drawInfo(path.get(i), g, Color.green);
                     }
                     for (int j = 0; j < path.get(i).get_neighbours().size(); j++) {
-                        drawInfo(path.get(i).get_neighbours().get(j), g, Color.pink);
+                        if (!(path.get(i).get_neighbours().get(j).isPath() || path.get(i).get_neighbours().get(j).isEqual(Apath.currentBlock)))
+                            drawInfo(path.get(i).get_neighbours().get(j), g, Color.pink);
                     }
+                }
+                for (int i = 0; i < corrections.size(); i++) {
+                    corrections.get(i).set_wall(false);
+                    drawInfo(corrections.get(i), g, Color.pink);
                 }
             }
         }
-        if(start_blk != null && end_blk != null){
-            for (int i = 0; i < Apath.start_blk.get_neighbours().size(); i++) {
-                drawInfo(Apath.start_blk.get_neighbours().get(i), g, null);
-            }
-        }
-
+        g.setColor(new Color(120, 120, 120, 80));
+        g.fillRect(10, Panel.HEIGHT - 96, 322, 90);
     }
 
     public static Boolean is_wall(Block blk) {
@@ -70,7 +78,7 @@ public class Apath {
             g.setColor(color);
             g.fillRect(tmpBlock.getX(), tmpBlock.getY(), SIZE, SIZE);
         }
-        if (SIZE > 50 && running ){
+        if (SIZE >= 50 && running) {
             if(!(tmpBlock.isEqual(Apath.start_blk) || tmpBlock.isEqual(Apath.end_blk))){
                 g.setColor(Color.black);
                 g.setFont(new Font("arial", Font.BOLD, 11));
@@ -83,6 +91,9 @@ public class Apath {
     }
 
     public static void findPath() {
+        if (found) {
+            return;
+        }
         path.clear();
         if (!(currentBlock == null)) {
             currentBlock = null;
@@ -91,13 +102,27 @@ public class Apath {
             Apath.start_blk.resetNeighbours();
             Apath.end_blk.resetNeighbours();
             Collections.sort(Apath.start_blk.get_neighbours(), new Compare());
-            Apath.currentBlock = Apath.start_blk.get_neighbours().get(0);
+            while (currentBlock == null && Apath.start_blk.get_neighbours().size() > 0) {
+                if (Apath.start_blk.get_neighbours().get(0).check_wall())
+                    Apath.start_blk.get_neighbours().remove(0);
+                else
+                    Apath.currentBlock = Apath.start_blk.get_neighbours().get(0);
+                break;
+            }
+            int i = 0;
             if (!(currentBlock.getEnd_cost() == SIZE || currentBlock.getEnd_cost() == (int) (Math.sqrt(2) * SIZE))) {
                 currentBlock.resetNeighbours();
                 Collections.sort(Apath.currentBlock.get_neighbours(), new Compare());
                 path.add(Apath.currentBlock.get_neighbours().get(0));
-                int i = 0;
-                while (!(path.get(i).getEnd_cost() == SIZE || path.get(i).get_neighbours().size() == 0 || path.get(i).getEnd_cost() == (int) (Math.sqrt(2) * SIZE))) {
+
+                while (!(path.get(i).getEnd_cost() == SIZE || path.get(i).getEnd_cost() == (int) (Math.sqrt(2) * SIZE))) {
+
+                    if (path.get(i).get_neighbours().size() == 0) {
+                        path.get(i).set_wall(true);
+                        corrections.add(path.get(i));
+                        path.remove(i);
+                        i--;
+                    }
                     path.get(i).resetNeighbours();
                     Collections.sort(path.get(i).get_neighbours(), new Compare());
                     for (int j = 0; j < path.get(i).get_neighbours().size(); j++) {
@@ -118,17 +143,27 @@ public class Apath {
                     }
                     if (!(path.get(i).get_neighbours().size() == 0)) {
                         path.get(i).get_neighbours().get(0).setParent(path.get(i));
+                        path.add(path.get(i).get_neighbours().get(0));
                     }
-                    path.add(path.get(i).get_neighbours().get(0));
                     System.out.println(path.size());
                     if (!(path.get(i).get_neighbours().size() == 0))
                         i++;
                 }
             }
+            System.out.println("done !!");
+            found = true;
 
+            /**
+             if(path.size() > 0){
+             i = path.size() - 1;
+             Actualpath.add(path.get(i));
+             while(Actualpath.get(i).getEnd_cost() != SIZE && Actualpath.get(i).getEnd_cost() != (int) (Math.sqrt(2) * SIZE)){
+
+             }
+             }
+             **/
         } else {
             System.out.println("\n Error: A start point and an end point must be set before starting the program");
         }
     }
-
 }

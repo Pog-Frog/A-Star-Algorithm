@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ecd50180-0910-41ca-846c-e68b1e03a790" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Apath.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Apath.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Block.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Block.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Panel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Panel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Sort.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A-Star-Algorithm/Sort.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Apath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Apath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Block.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sort.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,8 +77,23 @@
       <workItem from="1627521471065" duration="965000" />
       <workItem from="1627572509271" duration="6634000" />
       <workItem from="1627588457737" duration="990000" />
-      <workItem from="1627598619332" duration="919000" />
+      <workItem from="1627598619332" duration="1705000" />
+      <workItem from="1627695084405" duration="932000" />
+      <workItem from="1627863431915" duration="244000" />
+      <workItem from="1627924180513" duration="20000" />
+      <workItem from="1628121462887" duration="1116000" />
+      <workItem from="1629420582364" duration="162000" />
+      <workItem from="1629422727988" duration="1327000" />
+      <workItem from="1629483828422" duration="7645000" />
     </task>
+    <task id="LOCAL-00001" summary="Fixed some bugs that appear in certain patterns of obstacles.">
+      <created>1627600026260</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1627600026260</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -91,6 +111,12 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <MESSAGE value="Fixed some bugs that appear in certain patterns of obstacles." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed some bugs that appear in certain patterns of obstacles." />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

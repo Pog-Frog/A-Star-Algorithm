@@ -5,10 +5,11 @@ import java.awt.image.BufferedImage;
 
 public class Panel extends Canvas
         implements Runnable, ActionListener, MouseListener, MouseMotionListener, MouseWheelListener, KeyListener {
-    public static int WIDTH = 800;
-    public static int HEIGHT = (int) (WIDTH * 0.75);
+    public static int SIZE = 100;
+    public static int diag_cost = (int) (SIZE * Math.sqrt(2));
+    public static int WIDTH = 700;
+    public static int HEIGHT = WIDTH - SIZE;
     public static int SCALE = 1;
-    public static int SIZE = 25;
     public static String TITLE = "A* DEMO";
     private Graphics2D g;
     private BufferedImage image;
@@ -150,12 +151,14 @@ public class Panel extends Canvas
             Block tmp = new Block(wallX, WallY);
             if (!(tmp.equals(Apath.start_blk) || tmp.equals(Apath.end_blk))) {
                 tmp.set_wall(true);
-                Apath.walls.add(tmp);
-                for (int i = 0; i < Apath.max_row + 1; i++) {
-                    for (int j = 0; j < Apath.max_col + 1; j++) {
-                        if (Apath.blocks[i][j].isEqual(tmp)) {
-                            Apath.blocks[i][j].set_wall(true);
-                            break;
+                if (!Apath.is_wall(tmp)) {
+                    Apath.walls.add(tmp);
+                    for (int i = 0; i < Apath.max_row + 1; i++) {
+                        for (int j = 0; j < Apath.max_col + 1; j++) {
+                            if (Apath.blocks[i][j].isEqual(tmp)) {
+                                Apath.blocks[i][j].set_wall(true);
+                                break;
+                            }
                         }
                     }
                 }
@@ -205,9 +208,6 @@ public class Panel extends Canvas
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        int x = e.getX();
-        int y = e.getY();
-        int height = this.getHeight();
     }
 
     @Override
@@ -223,6 +223,7 @@ public class Panel extends Canvas
             else{
                 Apath.running = false;
                 Apath.currentBlock = null;
+                Apath.found = false;
             }
         }
         else{
@@ -240,6 +241,39 @@ public class Panel extends Canvas
     }
 
     @Override
-    public void mouseWheelMoved(MouseWheelEvent m) {
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        /**
+         int MouseRotation = e.getWheelRotation();
+         double PrevSize = SIZE, ratio;
+         int MouseScroll = 3;
+         if(MouseRotation == -1 && SIZE + MouseScroll < 200){
+         SIZE += MouseScroll;
+         }
+         else if(MouseRotation == 1 && SIZE + MouseScroll > 2){
+         SIZE -= MouseScroll;
+         }
+         ratio = SIZE / PrevSize;
+         for (int j = 0; j < Apath.max_row + 1; j++) {
+         for (int i = 0; j < Apath.max_col + 1; i++) {
+         Apath.blocks[i][j].setX((int)(Apath.blocks[i][j].getX() * ratio));
+         Apath.blocks[i][j].setY((int)(Apath.blocks[i][j].getY() * ratio));
+         }
+         }
+         if(Apath.start_blk != null){
+         Apath.start_blk.setX((int)(Apath.start_blk.getX() * ratio));
+         Apath.start_blk.setY((int)(Apath.start_blk.getY() * ratio));
+         }
+         if(Apath.end_blk != null){
+         Apath.end_blk.setX((int)(Apath.end_blk.getX() * ratio));
+         Apath.end_blk.setY((int)(Apath.end_blk.getY() * ratio));
+         }
+         for(int i=0;i<Apath.walls.size();i++){
+         Apath.walls.get(i).setX((int)(Apath.walls.get(i).getX() * ratio));
+         Apath.walls.get(i).setY((int)(Apath.walls.get(i).getY() * ratio));
+         }
+         Apath.start_blk.resetNeighbours();
+         Apath.end_blk.resetNeighbours();
+         Apath.currentBlock.resetNeighbours();
+         **/
     }
 }

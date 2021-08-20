@@ -79,7 +79,7 @@ public class Block implements Comparable <Block>{
             int col = x / size, row = y / size;
             //w
             if(!(col - 1 < 0)){
-                if (!((Apath.blocks[row][col - 1].isEqual(Apath.start_blk) || Apath.blocks[row][col - 1].isEqual(Apath.end_blk) || Apath.blocks[row][col - 1].check_wall()))) {
+                if (!((Apath.blocks[row][col - 1].isEqual(Apath.start_blk) || Apath.blocks[row][col - 1].isEqual(Apath.end_blk) || this.check_wall() || Apath.blocks[row][col - 1].check_wall()))) {
                     if (this.parent != null) {
                         if (!(Apath.blocks[row][col - 1].isEqual(this.parent))) {
                             neighbours.add(Apath.blocks[row][col - 1]);
@@ -91,7 +91,7 @@ public class Block implements Comparable <Block>{
             }
             // nw
             if (!(row - 1 < 0 || col - 1 < 0)) {
-                if(!((Apath.blocks[row - 1][col - 1].isEqual(Apath.start_blk) || Apath.blocks[row - 1][col - 1].isEqual(Apath.end_blk) || Apath.blocks[row - 1][col - 1].check_wall())))
+                if (!((Apath.blocks[row - 1][col - 1].isEqual(Apath.start_blk) || Apath.blocks[row - 1][col - 1].isEqual(Apath.end_blk) || this.check_wall() || Apath.blocks[row - 1][col - 1].check_wall())))
                     if (this.parent != null) {
                         if (!(Apath.blocks[row - 1][col - 1].isEqual(this.parent))) {
                             neighbours.add(Apath.blocks[row - 1][col - 1]);
@@ -102,7 +102,7 @@ public class Block implements Comparable <Block>{
             }
             // n
             if (!(row - 1 < 0 && col >= 0)) {
-                if(!((Apath.blocks[row - 1][col].isEqual(Apath.start_blk) || Apath.blocks[row - 1][col].isEqual(Apath.end_blk) || Apath.blocks[row - 1][col].check_wall())))
+                if (!((Apath.blocks[row - 1][col].isEqual(Apath.start_blk) || Apath.blocks[row - 1][col].isEqual(Apath.end_blk) || this.check_wall() || Apath.blocks[row - 1][col].check_wall())))
                     if (this.parent != null) {
                         if (!(Apath.blocks[row - 1][col].isEqual(this.parent))) {
                             neighbours.add(Apath.blocks[row - 1][col]);
@@ -113,7 +113,7 @@ public class Block implements Comparable <Block>{
             }
             // ne
             if (!(row - 1 < 0 || col + 1 > Apath.max_col)) {
-                if(!((Apath.blocks[row - 1][col + 1].isEqual(Apath.start_blk) || Apath.blocks[row - 1][col + 1].isEqual(Apath.end_blk) || Apath.blocks[row - 1][col + 1].check_wall())))
+                if (!((Apath.blocks[row - 1][col + 1].isEqual(Apath.start_blk) || Apath.blocks[row - 1][col + 1].isEqual(Apath.end_blk) || this.check_wall() || Apath.blocks[row - 1][col + 1].check_wall())))
                     if (this.parent != null) {
                         if (!(Apath.blocks[row - 1][col + 1].isEqual(this.parent))) {
                             neighbours.add(Apath.blocks[row - 1][col + 1]);
@@ -124,7 +124,7 @@ public class Block implements Comparable <Block>{
             }
             // e
             if (!(col + 1 > Apath.max_col)) {
-                if(!((Apath.blocks[row][col + 1].isEqual(Apath.start_blk) || Apath.blocks[row][col + 1].isEqual(Apath.end_blk) || Apath.blocks[row][col + 1].check_wall())))
+                if (!((Apath.blocks[row][col + 1].isEqual(Apath.start_blk) || Apath.blocks[row][col + 1].isEqual(Apath.end_blk) || this.check_wall() || Apath.blocks[row][col + 1].check_wall())))
                     if (this.parent != null) {
                         if (!(Apath.blocks[row][col + 1].isEqual(this.parent))) {
                             neighbours.add(Apath.blocks[row][col + 1]);
@@ -135,7 +135,7 @@ public class Block implements Comparable <Block>{
             }
             // se
             if (!(row + 1 > Apath.max_row || col + 1 > Apath.max_col)) {
-                if(!((Apath.blocks[row + 1][col + 1].isEqual(Apath.start_blk) || Apath.blocks[row + 1][col + 1].isEqual(Apath.end_blk) || Apath.blocks[row + 1][col + 1].check_wall())))
+                if (!((Apath.blocks[row + 1][col + 1].isEqual(Apath.start_blk) || Apath.blocks[row + 1][col + 1].isEqual(Apath.end_blk) || this.check_wall() || Apath.blocks[row + 1][col + 1].check_wall())))
                     if (this.parent != null) {
                         if (!(Apath.blocks[row + 1][col + 1].isEqual(this.parent))) {
                             neighbours.add(Apath.blocks[row + 1][col + 1]);
@@ -146,7 +146,7 @@ public class Block implements Comparable <Block>{
             }
             // s
             if (!(row + 1 > Apath.max_row)) {
-                if(!((Apath.blocks[row + 1][col].isEqual(Apath.start_blk) || Apath.blocks[row + 1][col].isEqual(Apath.end_blk) || Apath.blocks[row + 1][col].check_wall())))
+                if (!((Apath.blocks[row + 1][col].isEqual(Apath.start_blk) || Apath.blocks[row + 1][col].isEqual(Apath.end_blk) || this.check_wall() || Apath.blocks[row + 1][col].check_wall())))
                     if (this.parent != null) {
                         if (!(Apath.blocks[row + 1][col].isEqual(this.parent))) {
                             neighbours.add(Apath.blocks[row + 1][col]);
@@ -157,7 +157,7 @@ public class Block implements Comparable <Block>{
             }
             // sw
             if (!(col - 1 < 0 || row + 1 > Apath.max_row )) {
-                if(!((Apath.blocks[row + 1][col - 1].isEqual(Apath.start_blk) || Apath.blocks[row + 1][col - 1].isEqual(Apath.end_blk) || Apath.blocks[row + 1][col - 1].check_wall())))
+                if (!((Apath.blocks[row + 1][col - 1].isEqual(Apath.start_blk) || Apath.blocks[row + 1][col - 1].isEqual(Apath.end_blk) || this.check_wall() || Apath.blocks[row + 1][col - 1].check_wall())))
                     if (this.parent != null) {
                         if (!(Apath.blocks[row + 1][col - 1].isEqual(this.parent))) {
                             neighbours.add(Apath.blocks[row + 1][col - 1]);
@@ -190,5 +190,22 @@ public class Block implements Comparable <Block>{
 
     public int compareTo(Block blk) {
         return this.getTot_cost() - blk.getTot_cost();
+    }
+
+    public boolean isPath() {
+        for (int i = 0; i < Apath.path.size(); i++) {
+            if (this.isEqual(Apath.path.get(i)))
+                return true;
+        }
+        return false;
+    }
+
+    public int getDistance(Block x, Block y) {
+        int distx = Math.abs(x.getX() - y.getX());
+        int disty = Math.abs(x.getY() - y.getY());
+        if (distx > disty) {
+            return (int) (1.4 * Panel.SIZE) * disty + 10 * (distx - disty);
+        }
+        return (int) (1.4 * Panel.SIZE) * disty - distx;
     }
 }
