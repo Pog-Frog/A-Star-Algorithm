@@ -1,33 +1,120 @@
 import java.util.ArrayList;
-import java.util.Collections;
-
 public class Sort {
-    public static ArrayList<Block> sort(ArrayList<Block> lst) {
-        if(lst.size() < 2){
-            return lst;
-        }
-        int current_pos = 0;
-        for(int i =1;i<lst.size();i++){
-            if(lst.get(i).getTot_cost() <= lst.get(0).getTot_cost()){
-                current_pos++;
-                Collections.swap(lst, i, current_pos);
-            }
-        }
-        Collections.swap(lst, 0, current_pos);
-        ArrayList<Block> left = new ArrayList<Block>();
-        ArrayList<Block> right = new ArrayList<Block>();
-        ArrayList<Block> result = new ArrayList<Block>();
-        for(int i =0;i<current_pos;i++){
-            left.add(lst.get(i));
-        }
-        for(int i = current_pos +1 ;i<lst.size();i++){
-            right.add(lst.get(i));
-        }
-        left = sort(left);
-        right = sort(right);
-        result.addAll(left);
-        result.add(lst.get(current_pos));
-        result.addAll(right);
-        return lst;
-    }
+
+	private boolean lowToHigh, highToLow;
+
+	public Sort() {
+		lowToHigh = true;
+		highToLow = false;
+	}
+
+	public void bubbleSort(int[] data) {
+		int Switch = -1;
+		int temp;
+
+		while (Switch != 0) {
+			Switch = 0;
+
+			if (lowToHigh) {
+				for (int i = 0; i < data.length - 1; i++) {
+					if (data[i] > data[i + 1]) {
+						temp = data[i];
+						data[i] = data[i + 1];
+						data[i + 1] = temp;
+						Switch = 1;
+					}
+				}
+			} else if (highToLow) {
+				for (int i = 0; i < data.length - 1; i++) {
+					if (data[i] < data[i + 1]) {
+						temp = data[i];
+						data[i] = data[i + 1];
+						data[i + 1] = temp;
+						Switch = 1;
+					}
+				}
+			}
+		}
+	}
+
+	public void bubbleSort(ArrayList<Node> list) {
+		int Switch = -1;
+		Node temp;
+
+		while (Switch != 0) {
+			Switch = 0;
+
+			if (lowToHigh) {
+				for (int i = 0; i < list.size() - 1; i++) {
+					if (list.get(i).getF() > list.get(i + 1).getF()) {
+						temp = list.get(i);
+						list.remove(i);
+						list.add(i + 1, temp);
+						Switch = 1;
+					}
+				}
+			} else if (highToLow) {
+				for (int i = 0; i < list.size() - 1; i++) {
+					if (list.get(i).getF() < list.get(i + 1).getF()) {
+						temp = list.get(i);
+						list.remove(i);
+						list.add(i + 1, temp);
+						Switch = 1;
+					}
+				}
+			}
+		}
+	}
+
+	// low is 0, high is numbers.length - 1
+	// TODO: FIX HIGH TO LOW QUICKSORT
+	public void quickSort(int[] numbers, int low, int high) {
+		int i = low, j = high;
+
+		int pivot = numbers[low + (high - low) / 2];
+
+		while (i <= j) {
+
+			if (lowToHigh) {
+				while (numbers[i] < pivot) {
+					i++;
+				}
+
+				while (numbers[j] > pivot) {
+					j--;
+				}
+			} else if (highToLow) {
+				while (numbers[i] > pivot) {
+					i++;
+				}
+
+				while (numbers[j] < pivot) {
+					j--;
+				}
+			}
+
+			if (i <= j) {
+				int temp = numbers[i];
+				numbers[i] = numbers[j];
+				numbers[j] = temp;
+				i++;
+				j--;
+			}
+		}
+
+		if (low < j)
+			quickSort(numbers, low, j);
+		if (i < high)
+			quickSort(numbers, i, high);
+	} // end of quick sort
+
+	public void setLowToHigh() {
+		lowToHigh = true;
+		highToLow = false;
+	}
+
+	public void setHighToLow() {
+		lowToHigh = false;
+		highToLow = true;
+	}
 }
