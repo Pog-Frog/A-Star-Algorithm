@@ -1,5 +1,8 @@
 # A-star pathfinding algorithm visualization**
 
+### DEMO
+![diagonal-vs-non-diagonal](/assets/habiby.gif)
+
 [A*](https://en.wikipedia.org/wiki/A*_search_algorithm) is a graph traversal and path search algorithm, 
 which is often used in many fields of computer science due to its completeness, 
 optimality, and optimal efficiency. 
@@ -27,6 +30,3 @@ You can (kind of) zoom in and out. I wouldn't really advise it. It does not zoom
 
 ### Speed
 You can change the speed of the algorithm by moving the slider at the bottom right of the screen. The speed is in milliseconds.
-
-### DEMO
-![diagonal-vs-non-diagonal](/assets/habiby.gif)
